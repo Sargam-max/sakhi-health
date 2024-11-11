@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointments - SakhiHealth</title>
+    <link rel="stylesheet" href="ss.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #D5006D;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-left: 20px;
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #ed9db1;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #D5006D;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #D5006D;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #FF4081;
+        }
+
+        .resources, .faq {
+            margin-top: 40px;
+        }
+
+        .resources ul, .faq ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .resources li, .faq li {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #D5006D;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>SakhiHealth</h1>
+            <nav>
+                <a href="ss.html">Home</a>
+                
+                <a href="appointments.html">Appointments</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2>Book an Appointment</h2>
+            <p>Access quality healthcare by booking an appointment with trusted doctors and specialists.</p>
+            
+            <form action="submit-appointment.html" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Preferred Appointment Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialty">Specialty</label>
+                    <select id="specialty" name="specialty" required>
+                        <option value="general">General Health</option>
+                        <option value="obgyn">OB/GYN</option>
+                        <option value="mental-health">Mental Health</option>
+                        <option value="nutrition">Nutrition</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                
+                <button type="submit">Book Appointment</button>
+            </form>
+        </div>
+
+        <!-- Additional Resources Section -->
+        <div class="container resources">
+            <h2>Helpful Resources</h2>
+            <ul>
+                <li><a href="https://www.who.int">WHO Women’s Health Resources</a></li>
+                <li><a href="https://www.healthline.com/womens-health">Healthline: Women’s Health</a></li>
+                <li><a href="https://www.cdc.gov/women">CDC: Women’s Health Topics</a></li>
+            </ul>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="container faq">
+            <h2>Frequently Asked Questions</h2>
+            <ul>
+                <li><strong>What types of appointments can I book?</strong> You can book appointments for general health, mental health, OB/GYN, and nutrition.</li>
+                <li><strong>How will I know if my appointment is confirmed?</strong> You’ll receive a confirmation email with appointment details.</li>
+                <li><strong>Is there a consultation fee?</strong> Fees vary by doctor. You’ll receive details upon confirmation.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+    </footer>
+</body>
+</html>

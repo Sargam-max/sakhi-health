@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SakhiHealth Symptom Checker</title>
+    <style>
+        /* Simple styling for symptom checker */
+        .symptom-checker {
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+        .result {
+            color: #d5006d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="symptom-checker">
+        <h2>Symptom Checker</h2>
+        <label for="symptom">Select your symptom:</label>
+        <select id="symptom">
+            <option value="headache">Headache</option>
+            <option value="fatigue">Fatigue</option>
+            <option value="nausea">Nausea</option>
+            <option value="fever">Fever</option>
+        </select>
+        <button onclick="checkSymptom()">Check</button>
+
+        <p id="result" class="result"></p>
+    </div>
+
+    <script>
+        function checkSymptom() {
+            const symptom = document.getElementById('symptom').value;
+            let result = "Consult a healthcare provider for accurate diagnosis.";
+
+            switch(symptom) {
+                case "headache":
+                    result = "Drink water, rest, and try to reduce stress.";
+                    break;
+                case "fatigue":
+                    result = "Ensure a balanced diet and adequate sleep.";
+                    break;
+                case "nausea":
+                    result = "Try ginger tea and avoid rich or greasy foods.";
+                    break;
+                case "fever":
+                    result = "Stay hydrated and take rest.";
+                    break;
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>

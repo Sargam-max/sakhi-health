@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Fitness & Nutrition - SakhiHealth</title>
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f3f8;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #D5006D;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Titles */
+        h2 {
+            color: #D5006D;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Section Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Individual Section */
+        .section {
+            padding: 15px;
+            background-color: #fdf2f8;
+            border-radius: 8px;
+        }
+
+        .section h3 {
+            color: #D5006D;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Cards */
+        .card {
+            padding: 10px;
+            background-color: #fef4f8;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .card iframe {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.1em;
+            color: #D5006D;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background-color: #f8d7e3;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #f8d7e3;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            background-color: #D5006D;
+            height: 20px;
+            border-radius: 8px;
+            width: 0%;
+            color: white;
+            text-align: center;
+        }
+
+        /* CTA Button */
+        .cta {
+            display: block;
+            background-color: #D5006D;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+
+            border-radius: 8px;
+        }
+
+        /* Chat Box */
+        /*.chat-container {
+            margin-top: 20px;
+        }*/
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Personalized Fitness & Nutrition Recommendations</title>
+            <style>
+                /* General Styling */
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+        
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f8f3f8;
+                    color: #333;
+                }
+        
+                /* Header */
+                header {
+                    background-color: #D5006D;
+                    color: white;
+                    padding: 20px;
+                    text-align: center;
+                    font-size: 2em;
+                    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+                }
+        
+                /* Chatbox Container */
+                .chat-container {
+                    max-width: 600px;
+                    margin: 20px auto;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: white;
+                    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+                }
+        
+                .chat-container .ai-chat-box,
+                .chat-container .user-chat-box {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 10px;
+                }
+        
+                .chat-container .ai-chat-box .img,
+                .chat-container .user-chat-box .img {
+                    margin-right: 10px;
+                }
+        
+                .chat-container .ai-chat-box .text,
+                .chat-container .user-chat-box .text {
+                    max-width: 80%;
+                    padding: 8px;
+                    background-color: #f0f0f0;
+                    border-radius: 5px;
+                }
+        
+                .chat-container .loading {
+                    display: none;
+                }
+        
+                #prompt {
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 5px;
+                    border: 1px solid #ddd;
+                    margin-bottom: 10px;
+                }
+        
+                #btn {
+                    background-color: #D5006D;
+                    color: white;
+                    padding: 10px 15px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+        
+                #btn:hover {
+                    background-color: #b3005b;
+                }
+            </style>
+        </head>
+        <body>
+            <header>
+                <h1>Personalized Fitness & Nutrition Recommendations</h1>
+            </header>
+        
+            <div class="container">
+                <h2>Get AI-Powered Recommendations for Your Fitness & Nutrition Goals</h2>
+                
+                <!-- Chat Container -->
+                <div class="chat-container">
+                    <input type="text" id="prompt" placeholder="Tell us your fitness goal or health issue..." />
+                    <button id="btn">Get Recommendations</button>
+        
+                    <!-- Chat will be displayed here -->
+                </div>
+            </div>
+        
+            <script>
+                let prompt = document.querySelector("#prompt");
+                let btn = document.querySelector("#btn");
+                let chatContainer = document.querySelector(".chat-container");
+                let userMessage = null;
+                let Api_Url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDzFUvCzexQIML1As66xMYw5Yl4oPmNUGY';
+        
+                // Function to create chat box elements
+                function createChatBox(html, className) {
+                    let div = document.createElement("div");
+                    div.classList.add(className);
+                    div.innerHTML = html;
+                    return div;
+                }
+        
+                // Function to get AI response from API
+                async function getApiResponse(aiChatBox) {
+                    let textElement = aiChatBox.querySelector(".text");
+        
+                    try {
+                        let response = await fetch(Api_Url, {
+                            method: "POST",
+                            headers: { "Content-Type": 'application/json' },
+                            body: JSON.stringify({
+                                "contents": [{ "parts": [{ text: userMessage }] }]
+                            })
+                        });
+                        let data = await response.json();
+                        let apiResponse = data?.candidates[0].content.parts[0].text;
+                        textElement.innerText = apiResponse;
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+        
+                // Function to show the loading animation while fetching AI response
+                function showLoading() {
+                    let html = `
+                        <div class="img">
+                            <img src="ai.png" alt="" width="50px">
+                        </div>
+                        <p class="text"></p>
+                        <img class="loading" src="loading.png" alt="loading" height="50">
+                    `;
+                    let aiChatBox = createChatBox(html, "ai-chat-box");
+                    chatContainer.appendChild(aiChatBox);
+                    getApiResponse(aiChatBox);
+                }
+        
+                // Button click event to trigger the AI recommendation system
+                btn.addEventListener("click", () => {
+                    userMessage = prompt.value;
+                    if (!userMessage) return;
+        
+                    // Display the user's input in the chatbox
+                    let html = `
+                        <div class="img">
+                            <img src="user.png" alt="" width="50px">
+                        </div>
+                        <p class="text"></p>
+                    `;
+                    let userChatBox = createChatBox(html, "user-chat-box");
+                    userChatBox.querySelector(".text").innerText = userMessage;
+                    chatContainer.appendChild(userChatBox);
+                    prompt.value = "";
+        
+                    // Show loading while waiting for AI response
+                    setTimeout(showLoading, 500);
+                });
+            </script>
+
+        
+          
+
+    
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Personalized Fitness & Nutrition Recommendations</h1>
+    </header>
+
+    <div class="container">
+        <h2>Empowering Women's Health with AI-Powered Fitness & Nutrition Plans</h2>
+        <p>Receive tailored recommendations based on your symptoms, health goals, and needs.</p>
+
+        <!-- Chat Interface Section -->
+        <div class="section">
+            <h3>Get Personalized Recommendations</h3>
+            <textarea id="prompt" placeholder="Describe your symptoms or health goals here..." rows="4" style="width: 100%;"></textarea>
+            <button class="cta" id="btn">Get Recommendations</button>
+
+            <div class="chat-container"></div>
+        </div>
+
+        <!-- Workout Videos and Tips -->
+        <div class="grid">
+            <div class="section">
+                <h3>Workout Videos</h3>
+                <div class="card">
+                    <iframe src="https://www.youtube.com/embed/YQHsXMglC9A" title="Cardio Workout" allowfullscreen></iframe>
+                    <div class="card-title">20-Minute Cardio Blast</div>
+                    <p>Boost your energy and burn calories with this quick cardio workout.</p>
+                </div>
+                <div class="card">
+                    <iframe src="https://www.youtube.com/embed/kJQP7kiw5Fk" title="Strength Training" allowfullscreen></iframe>
+                    <div class="card-title">Full-Body Strength</div>
+                    <p>Strengthen muscles and improve endurance with this guided routine.</p>
+                </div>
+            </div>
+
+            <!-- Nutrition Advice & Meal Planning -->
+            <div class="section">
+                <h3>Nutrition Advice & Meal Planning</h3>
+                <div class="card">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Healthy Breakfast Tips" allowfullscreen></iframe>
+                    <div class="card-title">Healthy Breakfast Ideas</div>
+                    <p>Start your day with a nutritious smoothie and other breakfast ideas.</p>
+                </div>
+                <div class="card">
+                    <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" title="Balanced Diet Meal Prep" allowfullscreen></iframe>
+                    <div class="card-title">Balanced Meal Prep Tips</div>
+                    <p>Plan your meals with a mix of proteins, carbs, and healthy fats.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="section progress-tracker">
+            <h3>Your Weekly Progress Tracker</h3>
+            <p>Track your weekly fitness and nutrition goals below:</p>
+            <input type="number" id="progress-input" placeholder="Enter progress percentage (0-100)" min="0" max="100" style="width: 100%; padding: 8px;">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar">0% Complete</div>
+            </div>
+            <button class="cta" onclick="updateProgress()">Update Progress</button>
+        </div>
+
+        <!-- Stress Relief Section -->
+        <div class="section stress-relief-video">
+            <h3>Stress Relief Exercises</h3>
+            <p>Explore quick, effective exercises to reduce stress and improve mental well-being.</p>
+            <iframe src="https://www.youtube.com/embed/abcdEFGhijK" title="Stress Relief Yoga" allowfullscreen></iframe>
+            <p>Take a few minutes each day to follow along with these guided yoga and breathing exercises.</p>
+        </div>
+
+        <!-- Back to Home Button -->
+        <a href="ss.html" class="cta">Go Back to Home</a>
+    </div>
+
+    <script>
+        let prompt = document.querySelector("#prompt");
+        let btn = document.querySelector("#btn");
+        let chatContainer = document.querySelector(".chat-container");
+        let userMessage = null;
+        let Api_Url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDzFUvCzexQIML1As66xMYw5Yl4oPmNUGY';
+
+        function createChatBox(html, className) {
+            let div = document.createElement("div");
+            div.classList.add(className);
+            div.innerHTML = html;
+            return div;
+        }
+
+        async function getApiResponse(aiChatBox) {
+            let textElement = aiChatBox.querySelector(".text");
+
+            try {
+                let response = await fetch(Api_Url, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        prompt: userMessage,
+                        params: {
+                            maxOutputTokens: 100,
+                        },
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                let res = await response.json();
+                let aiResponse = res.choices[0].text;
+                textElement.innerHTML = aiResponse;
+                chatContainer.appendChild(aiChatBox);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            } catch (error) {
+                console.error('Error fetching AI response:', error);
+            }
+        }
+
+        btn.addEventListener("click", () => {
+            let userChatBox = createChatBox(
+                `<div class="img"></div><div class="text">${prompt.value}</div>`,
+                "chat-box"
+            );
+            chatContainer.appendChild(userChatBox);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            userMessage = prompt.value;
+            let aiChatBox = createChatBox('<div class="img"></div><div class="text">Loading...</div>', 'chat-box');
+            chatContainer.appendChild(aiChatBox);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            getApiResponse(aiChatBox);
+            prompt.value = '';
+        });
+
+        // Progress bar update
+        function updateProgress() {
+            let progressInput = document.querySelector('#progress-input');
+            let progressValue = progressInput.value;
+            if (progressValue >= 0 && progressValue <= 100) {
+                document.querySelector("#progress-bar").style.width = progressValue + "%";
+                document.querySelector("#progress-bar").innerText = progressValue + "% Complete";
+            }
+        }
+    </script>
+</body>
+</html>
+

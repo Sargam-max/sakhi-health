@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Assessment Quiz - SakhiHealth</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #faf3f9; /* Soft pink background */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Quiz container */
+        .quiz-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            animation: slideIn 0.5s ease; /* Animation effect */
+        }
+
+        /* Slide in animation */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Progress indicator */
+        .progress {
+            background: #f2f2f2;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px 0 20px;
+            height: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #f007c5; /* Progress color */
+            width: 0;
+            transition: width 0.3s;
+        }
+
+        /* Question styling */
+        .question {
+            font-size: 1.2em;
+            color: #d5006d;
+            margin-bottom: 15px;
+        }
+
+        /* Answer buttons */
+        .answer-btn {
+            background-color: #f5f5f5;
+            color: #d5006d;
+            border: 2px solid #f007c5;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 8px 0;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .answer-btn:hover {
+            background-color: #f007c5;
+            color: #fff;
+        }
+
+        /* Navigation buttons */
+        .nav-btns {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-btn {
+            background-color: #f007c5;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: #c700a4;
+        }
+
+        /* Result section */
+        .result-section {
+            display: none;
+        }
+
+        .result-text {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .suggestion {
+            background: #fce4ec;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 1em;
+            color: #d5006d;
+        }
+
+        /* Go Back to Home button styling */
+        .home-btn {
+            background-color: #f007c5;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+
+        .home-btn:hover {
+            background-color: #c700a4;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- Progress Indicator -->
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Question Display -->
+        <div id="question-container">
+            <p class="question" id="question">Question Text</p>
+            <button class="answer-btn" onclick="selectAnswer('A')">Answer A</button>
+            <button class="answer-btn" onclick="selectAnswer('B')">Answer B</button>
+            <button class="answer-btn" onclick="selectAnswer('C')">Answer C</button>
+            <button class="answer-btn" onclick="selectAnswer('D')">Answer D</button>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-btns">
+            <button class="nav-btn" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+            <button class="nav-btn" id="next-btn" onclick="nextQuestion()">Next</button>
+        </div>
+
+        <!-- Result Section -->
+        <div id="result-section" class="result-section">
+            <p class="result-text">Thank you for completing the self-assessment!</p>
+            <div id="suggestion" class="suggestion"></div>
+            <!-- Go Back to Home Button -->
+            <a href="ss.html" class="home-btn">Go Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions and options
+        const quizData = [
+            { question: "How often do you experience stress or anxiety?", options: ["Rarely", "Sometimes", "Often", "Very often"] },
+            { question: "Do you engage in regular physical activity?", options: ["Yes, daily", "Yes, a few times a week", "Rarely", "Never"] },
+            { question: "How would you describe your sleep quality?", options: ["Excellent", "Good", "Fair", "Poor"] },
+            { question: "Do you feel supported in your mental health?", options: ["Always", "Mostly", "Rarely", "Never"] }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        // Display initial question
+        function loadQuestion() {
+            const questionElement = document.getElementById("question");
+            const answerButtons = document.querySelectorAll(".answer-btn");
+            const progressBar = document.getElementById("progress-bar");
+
+            // Set question text and answers
+            questionElement.textContent = quizData[currentQuestionIndex].question;
+            answerButtons.forEach((btn, i) => {
+                btn.textContent = quizData[currentQuestionIndex].options[i];
+            });
+
+            // Update progress
+            progressBar.style.width = ((currentQuestionIndex + 1) / quizData.length) * 100 + "%";
+        }
+
+        // Select answer and calculate score
+        function selectAnswer(option) {
+            // Simple scoring for demonstration
+            score += quizData[currentQuestionIndex].options.indexOf(option) + 1;
+            nextQuestion();
+        }
+
+        // Navigate to the next question
+        function nextQuestion() {
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+                document.getElementById("prev-btn").disabled = false;
+            } else {
+                showResult();
+            }
+        }
+
+        // Navigate to the previous question
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        // Show final result and suggestions
+        function showResult() {
+            document.getElementById("question-container").style.display = "none";
+            document.getElementById("result-section").style.display = "block";
+
+            const suggestionText = document.getElementById("suggestion");
+            suggestionText.innerHTML = score < 10 
+                ? "Consider focusing on self-care practices, such as regular exercise and balanced nutrition."
+                : "You're on a positive path! Keep up the good work with mindfulness and wellness habits.";
+        }
+
+        // Load the first question initially
+        loadQuestion();
+    </script>
+</body>
+</html>
